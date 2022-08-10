@@ -1,0 +1,21 @@
+.allsidebar {
+   display: flex;
+   align-items: center;
+   justify-content:space-between;
+   padding: 30px 40px;
+   background-color: rgb(64, 1, 74);
+}
+.menu{
+   list-style-type: none;
+}
+.menu >li {
+   display: inline-block;
+   padding-right: 90px;
+}
+.menu >li>a {
+   text-decoration: none;
+   color: rgb(161, 198, 13);
+   font-size: 25px;
+   padding: 40px;
+
+}

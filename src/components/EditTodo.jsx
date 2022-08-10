@@ -1,7 +1,6 @@
 import React from "react";
-
 const EditTodo = () => {
-  return <div>EditTodo</div>;
+  return <div c>EditTodo</div>;
 };
 
 export default EditTodo;

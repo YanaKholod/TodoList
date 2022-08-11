@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./pagesstyles.module.css";
 const CreateTodo = () => {
   const [task, setTask] = useState("");
+  const [description, setDescription] = useState("");
   return (
     <div className={styles.wrapchbox}>
       <form>
@@ -13,8 +14,17 @@ const CreateTodo = () => {
               type="text"
               value={task}
               onChange={(e) => setTask(e.target.value)}
-              placeholder="Type in a task"
+              placeholder="Title"
               className={styles.inputtext}
+            ></input>
+          </div>
+          <div>
+            <input
+              type="text"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description"
+              className={styles.inputtextdescr}
             ></input>
           </div>
         </div>

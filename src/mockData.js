@@ -2,7 +2,7 @@ export const todoBaseData = [
   {
     id: 0,
     title: "To buy milk",
-    description: "",
+    description: "ggggggg",
     isCompleted: true,
     createdAt: new Date(),
     completedAt: new Date(),
@@ -10,7 +10,7 @@ export const todoBaseData = [
   {
     id: 1,
     title: "Fill the car",
-    description: "",
+    description: "fggggggggg",
     isCompleted: true,
     createdAt: new Date(),
     completedAt: new Date(),
@@ -26,7 +26,6 @@ export const todoBaseData = [
   {
     id: 3,
     title: "Fix the plumbing in the country",
-    title: "Fill the car",
     description: "",
     isCompleted: true,
     createdAt: new Date(),

@@ -1,13 +1,13 @@
 import React from "react";
-import { sidebar } from "./sidebar";
+import { Sidebar } from "./Constante";
 import { Link } from "react-router-dom";
-import s from "./Styleall.module.css";
+import styles from "./Styleall.module.css";
 const Menu = () => {
   return (
-    <div className={s.allsidebar}>
-      <div className={s.wrapsidebar}>
-        <ul className={s.menu}>
-          {sidebar.map((item, idx) => (
+    <div className={styles.allsidebar}>
+      <div className={styles.wrapsidebar}>
+        <ul className={styles.menu}>
+          {Sidebar.map((item, idx) => (
             <li key={item.id}>
               <Link to={item.link}>{item.title}</Link>
             </li>

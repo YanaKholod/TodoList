@@ -1,6 +1,6 @@
 .allsidebar {
    padding: 30px 40px;
-   background-color: rgb(90, 0, 103);
+   background-color: rgba(105, 201, 164, 0.484);
 }
 .menu{
    list-style-type: none;
@@ -10,6 +10,6 @@
 }
 .menu >li>a {
    text-decoration: none;
-   color: rgb(161, 198, 13);
+   color: rgb(104, 104, 104);
    font-size: 25px;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 const EditTodo = () => {
-  return <div c>EditTodo</div>;
+  return <div>EditTodo</div>;
 };
 
 export default EditTodo;

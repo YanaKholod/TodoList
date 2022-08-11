@@ -1,12 +1,12 @@
 import React from "react";
-import { todoBase } from "../components/Constante";
+import { todoBaseData } from "../mockData";
 import styles from "./pagesstyles.module.css";
 const HomePage = () => {
   return (
     <div className={styles.list}>
       <ul>
-        {todoBase.map((item, idx) => (
-          <li ckey={item.id}>{item.name}</li>
+        {todoBaseData.map((item, idx) => (
+          <li key={item.id}>{item.title}</li>
         ))}
       </ul>
     </div>

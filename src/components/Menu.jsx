@@ -1,5 +1,5 @@
 import React from "react";
-import { Sidebar } from "./Constante";
+import { Sidebar } from "../Constants";
 import { Link } from "react-router-dom";
 import styles from "./Styleall.module.css";
 const Menu = () => {

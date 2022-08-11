@@ -1,7 +1,16 @@
+.content {
+   grid-area: content;
+   background-color: rgba(157, 0, 178, 0.653);
+}
+.sidebar{
+   grid-area: sidebar;
+   
+
+}
 .app{
-   height:100%;
+   display: grid;
+   grid-template-columns: 3fr 10fr;
+   grid-template-areas: 
+    "sidebar content content";
 }
 
-.content{
-   min-height: 100%;
-}

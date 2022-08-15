@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div className={styles.list}>
       {todoBaseData.map((item, idx) => (
-        <TodoItemComponent key={item.id} title={"dddddddd"} todoItem={item} />
+        <TodoItemComponent key={item.id} todoItem={item} />
       ))}
     </div>
   );

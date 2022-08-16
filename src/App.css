@@ -4,13 +4,12 @@
 }
 .sidebar{
    grid-area: sidebar;
-   
-
 }
 .app{
    display: grid;
    grid-template-columns: 3fr 10fr;
    grid-template-areas: 
-    "sidebar content content";
+   "sidebar content content";
+   height: 100%;
 }
 

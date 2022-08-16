@@ -1,6 +1,7 @@
 .allsidebar {
    padding: 30px 40px;
    background-color: rgba(105, 201, 164, 0.484);
+   height: 100%;
 }
 .menu{
    list-style-type: none;
@@ -12,4 +13,74 @@
    text-decoration: none;
    color: rgb(104, 104, 104);
    font-size: 25px;
+}
+.wrapper{
+   display: flex;
+   flex-direction: row;
+   height:max-content;
+   text-align: center;
+   margin: 10px;
+   height: 50px;
+   
+}
+.title{
+   margin: 12px;
+   font-size: 23px;
+   cursor: default;
+
+}
+.buttonsWrapper{
+   display: flex;
+   flex-direction: row;
+
+}
+.doneBtn{
+   background-color: rgb(187, 50, 50);
+   border-radius: 6px;
+   text-align: center;
+   width: 70px;
+   margin: 10px;
+   padding-top: 4px;
+   height: 30px;
+   cursor: pointer;
+}
+.deleteBtn{
+   background-color: rgb(187, 50, 50);
+   border-radius: 6px;
+   text-align: center;
+   width: 70px;
+   padding-top: 4px;
+   margin: 10px;
+   height: 30px;
+   cursor: pointer;
+}
+.infoBtn{
+   background-color: rgb(187, 50, 50);
+   border-radius: 15px;
+   text-align: center;
+   width: 70px;
+   padding-top: 4px;
+   margin: 10px;
+   height: 30px;
+   position:relative;
+   cursor: pointer;
+}
+.description{
+   padding: 7px;
+   border: 5px;
+   border-color: black;
+   background-color: rgba(137, 0, 0, 0.319);
+   display: none;
+   width:300px;
+   margin: 10px;
+   height: max-content;
+}
+.infoBtn:hover .description{
+   display:block;
+   position:absolute;
+   border-radius: 10px;
+   left:70%;
+   top:0%;
+   z-index: 5;
+
 }

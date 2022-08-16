@@ -1,36 +1,60 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { useState } from "react";
 import styles from "./pagesstyles.module.css";
+{
+  /* <div className={s.error}>
+            {errors?.field && <p>{errors?.field?.message}</p>}
+          </div>  */
+}
 const CreateTodo = () => {
-  const [task, setTask] = useState("");
-  const [description, setDescription] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(JSON.stringify(data));
+    reset();
+  };
   return (
-    <div className={styles.wrapchbox}>
-      <form>
+    <div className={styles.wrapChbox}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label>Type in your task</label>
           <div>
             <input
-              type="text"
-              value={task}
-              onChange={(e) => setTask(e.target.value)}
+              {...register("Title", { required: "Error!" })}
               placeholder="Title"
-              className={styles.inputtext}
+              className={styles.inputText}
             ></input>
           </div>
           <div>
             <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              {...register("Description1", { required: "Error!" })}
               placeholder="Description"
-              className={styles.inputtextdescr}
+              className={styles.inputTextDescr}
+            ></input>
+          </div>
+          <div className={styles.checkInProgress}>
+            <label>In progress</label>
+            <input
+              type="checkbox"
+              {...register("In progress", { required: "Error!" })}
+            ></input>
+          </div>
+          <div className={styles.checkDone}>
+            <label>Done</label>
+            <input
+              type="checkbox"
+              {...register("Done", { required: "Error!" })}
             ></input>
           </div>
         </div>
         <div>
-          <button className={styles.submbut} type="submit">
-            Add the task
+          <button className={styles.submBut} type="submit">
+            Add
           </button>
         </div>
       </form>

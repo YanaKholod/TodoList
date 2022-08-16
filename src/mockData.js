@@ -26,7 +26,6 @@ export const todoBaseData = [
   {
     id: 3,
     title: "Fix the plumbing in the country",
-    title: "Fill the car",
     description: "",
     isCompleted: true,
     createdAt: new Date(),

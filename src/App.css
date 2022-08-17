@@ -1,7 +1,6 @@
 .content {
    grid-area: content;
-   background-color: rgba(189, 183, 183, 0.993);
-   height: 100%;
+   background-color: rgba(255, 255, 255);
 }
 .sidebar{
    grid-area: sidebar;

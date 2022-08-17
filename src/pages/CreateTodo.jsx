@@ -1,38 +1,75 @@
 import React from "react";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import styles from "./pagesstyles.module.css";
+
 const CreateTodo = () => {
-  const [task, setTask] = useState("");
-  const [description, setDescription] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+    reset,
+  } = useForm({
+    mode: "onBlur",
+  });
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+  };
   return (
-    <div className={styles.wrapchbox}>
-      <form>
-        <div>
-          <label>Type in your task</label>
-          <div>
-            <input
-              type="text"
-              value={task}
-              onChange={(e) => setTask(e.target.value)}
-              placeholder="Title"
-              className={styles.inputtext}
-            ></input>
-          </div>
-          <div>
-            <input
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Description"
-              className={styles.inputtextdescr}
-            ></input>
-          </div>
+    <div className={styles.wrapChbox}>
+      <h1>Type in your task</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label>
+          <p>Title:</p>
+          <input
+            {...register("title", {
+              required: "Required field!",
+              minLength: {
+                value: 5,
+                message: "Enter the title",
+              },
+            })}
+            className={styles.inputText}
+          ></input>
+        </label>
+        <div className={styles.error}>
+          {errors?.title && <p>{errors?.title?.message}</p>}
         </div>
-        <div>
-          <button className={styles.submbut} type="submit">
-            Add the task
-          </button>
+        <label>
+          <p> Description:</p>
+          <textarea
+            {...register("description", {
+              required: "Required field!",
+              minLength: {
+                value: 10,
+                message: "Enter the description",
+              },
+            })}
+            className={styles.inputTextDescr}
+          ></textarea>
+        </label>
+        <div className={styles.error}>
+          {errors?.description && <p>{errors?.description?.message}</p>}
         </div>
+        <label>
+          In progress
+          <input
+            value="false"
+            type="radio"
+            {...register("isCompleted", { required: true })}
+          ></input>
+        </label>
+        <label>
+          Done
+          <input
+            value="true"
+            type="radio"
+            {...register("isCompleted", { required: true })}
+          ></input>
+        </label>
+        <button className={styles.submBut} type="submit" disabled={!isValid}>
+          Add
+        </button>
       </form>
     </div>
   );

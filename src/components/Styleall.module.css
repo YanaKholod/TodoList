@@ -1,5 +1,5 @@
 .allsidebar {
-   min-height: 1200px;
+   height: 100vh;
    padding: 30px 40px;
    background-color: rgba(140, 187, 241);
 }

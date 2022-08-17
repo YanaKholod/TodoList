@@ -2,11 +2,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styles from "./pagesstyles.module.css";
 
-/* <div className={s.error}>
-            {errors?.field && <p>{errors?.field?.message}</p>}
-          </div>  */
-// we can set mode all but it slows down performance
-
 const CreateTodo = () => {
   const {
     register,

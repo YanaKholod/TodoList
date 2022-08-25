@@ -1,5 +1,5 @@
 
-.wrapperForm{
+.wrapperForm {
    margin-left: 10%;
    width: 50%;
    font-family: "Gill Sans", sans-serif;
@@ -20,14 +20,14 @@
    border-color:  rgb(45, 93, 147);
    font-family: "Gill Sans", sans-serif;
 }
-.submBtn{
+.submBtn {
    background-color: rgba(140, 187, 241, 0.612);
    margin-left: 10px;
 }
 .cancelBtn {
    background-color: rgba(140, 187, 241, 0.218);
 }
-.inputText{
+.inputText {
    background-color: rgb(253,253,255);
    border-color: rgb(140,187,241);
    box-sizing: border-box;
@@ -37,7 +37,7 @@
    padding: 6px 10px;
    font-family: "Gill Sans", sans-serif;
 }
-.inputTextDescr{
+.inputTextDescr {
    background-color: rgb(253,253,255);
    box-sizing: border-box;
    border-color: rgb(140,187,241);
@@ -63,6 +63,6 @@
 .error >p {
    margin: 5px;
 }
-.submBtn:disabled{
+.submBtn:disabled {
    opacity: 0.2;
 }

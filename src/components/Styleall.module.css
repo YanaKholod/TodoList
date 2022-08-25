@@ -2,6 +2,7 @@
    height: 100vh;
    padding: 30px 40px;
    background-color: rgba(140, 187, 241);
+   font-family: "Gill Sans", sans-serif;
 }
 .menu{
    list-style-type: none;
@@ -14,58 +15,72 @@
    color: rgb(45, 93, 147);
    font-size: 25px;
 }
-.wrapper{
+.wrapper {
    display: flex;
    flex-direction: row;
-   height:max-content;
    text-align: center;
    margin: 10px;
    height: 50px;
+   font-family: "Gill Sans", sans-serif;
 }
 .title{
    margin: 12px;
    font-size: 23px;
    cursor: default;
 }
-.buttonsWrapper{
+.buttonsWrapper {
    display: flex;
    flex-direction: row;
 }
-.doneBtn{
+.doneBtn {
    background-color: rgb(140,187,241);
    color: rgb(45, 93, 147);
    border-radius: 20px;
    text-align: center;
    width: 70px;
    margin: 10px;
-   padding-top: 4px;
+   padding-top: 6px;
    height: 30px;
    cursor: pointer;
 }
-.deleteBtn{
+.deleteBtn {
    background-color: rgb(249,206,223);
    color: rgb(135, 65, 93);
    border-radius: 20px;
    text-align: center;
    width: 70px;
-   padding-top: 4px;
+   padding-top: 6px;
    margin: 10px;
    height: 30px;
    cursor: pointer;
 }
-.infoBtn{
+.deleteBtn:disabled {
+   cursor: not-allowed;
+}
+.infoBtn {
    background-color: rgb(252,237,203);
    color: rgb(109, 91, 48);
    border-radius: 20px;
    text-align: center;
    width: 70px;
-   padding-top: 4px;
+   padding-top: 6px;
    margin: 10px;
    height: 30px;
    position:relative;
    cursor: pointer;
 }
-.description{
+.editBtn{
+   background-color: rgb(216,222,233);
+   color: rgb(73, 78, 87);
+   border-radius: 20px;
+   text-align: center;
+   width: 70px;
+   padding-top: 6px;
+   margin: 10px;
+   height: 30px;
+   cursor: pointer;
+}
+.description {
    padding: 7px;
    border: 5px;
    background-color: rgba(253, 253, 255, 0.29);
@@ -75,11 +90,17 @@
    margin: 10px;
    height: max-content;
 }
-.infoBtn:hover .description{
+.infoBtn:hover .description {
    display:block;
    position:absolute;
    border-radius: 10px;
    left:70%;
    top:0%;
    z-index: 5;
+}
+.notActive { 
+   opacity: 0.4;
+}
+.btnNotAllowed {
+   cursor: not-allowed;
 }

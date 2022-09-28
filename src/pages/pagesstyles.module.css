@@ -1,11 +1,75 @@
 
-.wrapperForm {
-   margin-left: 10%;
-   width: 50%;
-   font-family: "Gill Sans", sans-serif;
+.filterSortBtns { 
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+}
+.filterBtn {
+   background-color: rgb(249,206,223);
+   color: rgb(135, 65, 93);
+   border-radius: 20px;
+   text-align: center;
+   margin: 10px;
+   padding: 8px 14px;
+   cursor: pointer;
+   border: none;
+}
+.filters {
+   display: none;
+   width:max-content;
+   margin: 9px auto 9px;
+   background-color: rgb(249,206,223);
+   border-radius: 5px;
+}
+.filters div {
+   padding: 4px;
+}
+.filterBtn:hover .filters {
+   display:flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   position:absolute;
+   right: 7%;
+   z-index: 10;
+}
+.sortBtn {
+   background-color: rgb(140,187,241);
+   color: rgb(45, 93, 147);
+   border-radius: 20px;
+   text-align: center;
+   margin: 10px;
+   padding: 8px 14px;
+   cursor: pointer;
+   border: none;
+}
+.sorts {
+   display: none;
+   width:max-content;
+   margin: 4px auto 4px;
+   background-color: rgb(140,187,241);
+   border-radius: 5px;
+}
+.sorts div {
+   padding: 5px;
+}
+.sortBtn:hover .sorts {
+   display:flex;
+   flex-direction: column;
+   justify-content: flex-end;
+   position:absolute;
+   margin-top:10px;
+   right: 0%;
+   z-index: 10;
 }
 .wrapperForm >h1 {
    color: rgb(45, 93, 147);
+}
+.wrapperForm {
+   width: 50%;
+   font-family: "Gill Sans", sans-serif;
+   background-color: rgb(255, 255, 255);
+   padding: 10px;
+   border-radius: 10px;
 }
 .wrapperBtn {
    display: flex;

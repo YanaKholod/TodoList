@@ -1,7 +1,6 @@
-export const pastDate = () => {
+export const pastDate = (daysAgo) => {
   const date = new Date();
-  const randomNumber = Math.floor(Math.random() * (365 - 1));
-  const currentDate = date.setDate(date.getDate() - randomNumber);
+  const currentDate = date.setDate(date.getDate() - daysAgo);
 
   return new Date(currentDate);
 };

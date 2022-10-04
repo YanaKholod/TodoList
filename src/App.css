@@ -1,6 +1,7 @@
 .content {
    grid-area: content;
    background-color: rgba(255, 255, 255);
+   padding-left: 15%;
 }
 .sidebar{
    grid-area: sidebar;
@@ -12,4 +13,9 @@
    "sidebar content content";
    height: 100%;
 }
-
+h1 {
+   color: rgb(45, 93, 147);
+   font-family: "Gill Sans", sans-serif;
+   margin-top: 20px;
+   padding-left: 40px;
+}

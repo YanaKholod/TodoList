@@ -116,3 +116,14 @@
    backdrop-filter: blur(5px);
    z-index: 4;
 }
+.donutInfo {
+   display:grid;
+   justify-content:center;
+   align-items: center;
+   padding-right: 30%;
+   font-family: "Gill Sans", sans-serif;
+}
+.wrapperStatics {
+   display:grid;
+   grid-template-columns: 400px 3fr;
+}

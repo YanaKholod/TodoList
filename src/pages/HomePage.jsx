@@ -2,35 +2,41 @@ import React, { useState, useEffect } from "react";
 import { todoBaseData } from "../mockData";
 import styles from "./pagesstyles.module.css";
 import TodoItemComponent from "../components/todoItemComponent";
+import { useDispatch, useSelector } from "react-redux";
+import { getTodos } from "../utils/slice";
 
 const HomePage = () => {
-  const [todoItems, setTodoItems] = useState(todoBaseData);
+  const dispatch = useDispatch();
+  const todosStore = useSelector((state) => state.allTodos.todos);
+  const [todoItems, setTodoItems] = useState(todosStore);
   const [showCompletedItems, setShowCompletedItems] = useState(false);
   const [showDeletedItems, setShowDeletedItems] = useState(false);
   const [showActiveItems, setShowActiveItems] = useState(false);
   const [showAllItems, setShowAllItems] = useState(false);
   const [isDeletedClick, setIsDeletedClick] = useState(false);
   useEffect(() => {
-    const newItems = todoBaseData.filter(
+    const newItems = todosStore.filter(
       (item) => showDeletedItems === item.isDeleted
     );
     setTodoItems(newItems);
   }, [showDeletedItems, isDeletedClick]);
   useEffect(() => {
-    setTodoItems(todoBaseData);
+    setTodoItems(todosStore);
   }, [showAllItems]);
   useEffect(() => {
-    const activeTodos = todoBaseData.filter((item) => !item.isCompleted);
+    const activeTodos = todosStore.filter((item) => !item.isCompleted);
     setTodoItems(activeTodos);
   }, [showActiveItems]);
   useEffect(() => {
-    const completedTodos = todoBaseData.filter((item) => item.isCompleted);
+    const completedTodos = todosStore.filter((item) => item.isCompleted);
     setTodoItems(completedTodos);
   }, [showCompletedItems]);
   useEffect(() => {
-    const activeTodos = todoBaseData.filter((item) => !item.isDeleted);
+    // const activeTodos = todoBaseData.filter((item) => !item.isDeleted);
+    dispatch(getTodos(todoBaseData));
+    const activeTodos = todosStore.filter((item) => !item.isDeleted);
     setTodoItems(activeTodos);
-  }, []);
+  }, [dispatch, todosStore]);
   return (
     <div className={styles.list}>
       <h1>To do list</h1>

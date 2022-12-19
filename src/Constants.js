@@ -11,11 +11,6 @@ export const Sidebar = [
   },
   {
     id: 2,
-    title: "Edit",
-    link: "/edit",
-  },
-  {
-    id: 3,
     title: "Statics",
     link: "/statics",
   },

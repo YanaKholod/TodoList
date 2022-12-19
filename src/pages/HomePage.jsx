@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { todoBaseData } from "../mockData";
 import styles from "./pagesstyles.module.css";
 import TodoItemComponent from "../components/todoItemComponent";
@@ -8,35 +8,10 @@ import { getTodos } from "../utils/slice";
 const HomePage = () => {
   const dispatch = useDispatch();
   const todosStore = useSelector((state) => state.allTodos.todos);
-  const [todoItems, setTodoItems] = useState(todosStore);
-  const [showCompletedItems, setShowCompletedItems] = useState(false);
-  const [showDeletedItems, setShowDeletedItems] = useState(false);
-  const [showActiveItems, setShowActiveItems] = useState(false);
-  const [showAllItems, setShowAllItems] = useState(false);
-  const [isDeletedClick, setIsDeletedClick] = useState(false);
   useEffect(() => {
-    const newItems = todosStore.filter(
-      (item) => showDeletedItems === item.isDeleted
-    );
-    setTodoItems(newItems);
-  }, [showDeletedItems, isDeletedClick]);
-  useEffect(() => {
-    setTodoItems(todosStore);
-  }, [showAllItems]);
-  useEffect(() => {
-    const activeTodos = todosStore.filter((item) => !item.isCompleted);
-    setTodoItems(activeTodos);
-  }, [showActiveItems]);
-  useEffect(() => {
-    const completedTodos = todosStore.filter((item) => item.isCompleted);
-    setTodoItems(completedTodos);
-  }, [showCompletedItems]);
-  useEffect(() => {
-    // const activeTodos = todoBaseData.filter((item) => !item.isDeleted);
     dispatch(getTodos(todoBaseData));
-    const activeTodos = todosStore.filter((item) => !item.isDeleted);
-    setTodoItems(activeTodos);
-  }, [dispatch, todosStore]);
+  }, []);
+
   return (
     <div className={styles.list}>
       <h1>To do list</h1>
@@ -44,16 +19,10 @@ const HomePage = () => {
         <button className={styles.filterBtn}>
           Filter
           <div className={styles.filters}>
-            <div onClick={() => setShowAllItems(!showAllItems)}>All</div>
-            <div onClick={() => setShowActiveItems(!showActiveItems)}>
-              Active
-            </div>
-            <div onClick={() => setShowCompletedItems(!showCompletedItems)}>
-              Completed
-            </div>
-            <div onClick={() => setShowDeletedItems(!showDeletedItems)}>
-              Deleted
-            </div>
+            <div>All</div>
+            <div>Active</div>
+            <div>Completed</div>
+            <div>Deleted</div>
           </div>
         </button>
         <button className={styles.sortBtn}>
@@ -65,13 +34,8 @@ const HomePage = () => {
           </div>
         </button>
       </div>
-      {todoItems.map((item) => (
-        <TodoItemComponent
-          key={item.id}
-          todoItem={item}
-          deletedClick={setIsDeletedClick}
-          stateDeletedClick={isDeletedClick}
-        />
+      {todosStore.map((item) => (
+        <TodoItemComponent todoItem={item} key={item.id} />
       ))}
     </div>
   );

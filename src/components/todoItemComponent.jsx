@@ -1,42 +1,21 @@
 import React from "react";
-import { todoBaseData } from "../mockData";
+import { useDispatch } from "react-redux";
 import styles from "./Styleall.module.css";
 import Form from "../components/Form";
+import { deleteTodo, doneTodo, editTodo } from "../utils/slice";
 import { useState } from "react";
 
-const TodoItemComponent = ({ todoItem, deletedClick, stateDeletedClick }) => {
+const TodoItemComponent = ({ todoItem }) => {
   const [showModal, setShowModal] = useState(false);
-  const handleDone = (itemId) => {
-    const currentIndex = todoBaseData.findIndex((item) => item.id === itemId);
-    todoBaseData[currentIndex] = {
-      ...todoBaseData[currentIndex],
-      isCompleted: true,
-      completedAt: new Date(),
+  const handleEdit = (data) => {
+    const itemData = {
+      id: todoItem.id,
+      data: data,
     };
-    deletedClick(!stateDeletedClick);
-  };
-  const handleDelete = (itemId) => {
-    const currentIndex = todoBaseData.findIndex((item) => item.id === itemId);
-    todoBaseData[currentIndex] = {
-      ...todoBaseData[currentIndex],
-      isDeleted: true,
-      deletedAt: new Date(),
-    };
-    deletedClick(!stateDeletedClick);
-  };
-  const handleEdit = (data, itemId) => {
-    const currentIndex = todoBaseData.findIndex((item) => item.id === itemId);
-    todoBaseData[currentIndex] = {
-      ...todoBaseData[currentIndex],
-      id: itemId,
-      title: data.title,
-      description: data.description,
-      isCompleted: data.isCompleted === "true" ? true : false,
-      completedAt: data.isCompleted ? new Date() : null,
-    };
+    dispatch(editTodo(itemData));
     setShowModal(false);
-    deletedClick(!stateDeletedClick);
   };
+  const dispatch = useDispatch();
   return (
     <div
       className={`${styles.wrapper} ${
@@ -50,7 +29,7 @@ const TodoItemComponent = ({ todoItem, deletedClick, stateDeletedClick }) => {
             todoItem.isCompleted ? styles.btnNotAllowed : ""
           }`}
           onClick={() => {
-            !todoItem.isCompleted && handleDone(todoItem.id);
+            dispatch(doneTodo(todoItem.id));
           }}
         >
           Done
@@ -60,7 +39,7 @@ const TodoItemComponent = ({ todoItem, deletedClick, stateDeletedClick }) => {
             todoItem.isDeleted ? styles.btnNotAllowed : ""
           }`}
           onClick={() => {
-            handleDelete(todoItem.id);
+            dispatch(deleteTodo(todoItem.id));
           }}
         >
           Delete
@@ -79,7 +58,7 @@ const TodoItemComponent = ({ todoItem, deletedClick, stateDeletedClick }) => {
               setShowModal={setShowModal}
               initialData={todoItem}
               buttonName={"Save"}
-              onFormSubmit={handleEdit}
+              onFormSubmit={(data) => handleEdit(data)}
             />
           </div>
         )}
@@ -88,7 +67,7 @@ const TodoItemComponent = ({ todoItem, deletedClick, stateDeletedClick }) => {
           <div className={styles.description}>
             <div>{todoItem.description}</div>
             <div>
-              {!todoItem.isCompleted &&
+              {/* {!todoItem.isCompleted &&
                 !todoItem.isDeleted &&
                 `Created at : ${todoItem.createdAt.toLocaleDateString(
                   "en-US"
@@ -110,7 +89,7 @@ const TodoItemComponent = ({ todoItem, deletedClick, stateDeletedClick }) => {
                 `Created at: ${todoItem.createdAt.toLocaleDateString("en-US")}
                 Completed at: ${todoItem.completedAt.toLocaleDateString(
                   "en-US"
-                )} `}
+                )} `} */}
             </div>
           </div>
         </div>

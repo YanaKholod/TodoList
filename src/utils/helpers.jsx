@@ -4,3 +4,4 @@ export const pastDate = (daysAgo) => {
 
   return new Date(currentDate);
 };
+console.log("newDate", pastDate());

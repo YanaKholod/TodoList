@@ -2,35 +2,43 @@ import React, { useState, useEffect } from "react";
 import { todoBaseData } from "../mockData";
 import styles from "./pagesstyles.module.css";
 import TodoItemComponent from "../components/todoItemComponent";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchTodos } from "../store/slice";
 
 const HomePage = () => {
-  const [todoItems, setTodoItems] = useState(todoBaseData);
+  const todosCollection = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
+
   const [showCompletedItems, setShowCompletedItems] = useState(false);
   const [showDeletedItems, setShowDeletedItems] = useState(false);
   const [showActiveItems, setShowActiveItems] = useState(false);
   const [showAllItems, setShowAllItems] = useState(false);
-  const [isDeletedClick, setIsDeletedClick] = useState(false);
-  useEffect(() => {
-    const newItems = todoBaseData.filter(
-      (item) => showDeletedItems === item.isDeleted
-    );
-    setTodoItems(newItems);
-  }, [showDeletedItems, isDeletedClick]);
-  useEffect(() => {
-    setTodoItems(todoBaseData);
-  }, [showAllItems]);
-  useEffect(() => {
-    const activeTodos = todoBaseData.filter((item) => !item.isCompleted);
-    setTodoItems(activeTodos);
-  }, [showActiveItems]);
-  useEffect(() => {
-    const completedTodos = todoBaseData.filter((item) => item.isCompleted);
-    setTodoItems(completedTodos);
-  }, [showCompletedItems]);
-  useEffect(() => {
-    const activeTodos = todoBaseData.filter((item) => !item.isDeleted);
-    setTodoItems(activeTodos);
-  }, []);
+  // const [isDeletedClick, setIsDeletedClick] = useState(false);
+  // useEffect(() => {
+  //   const newItems = todoBaseData.filter(
+  //     (item) => showDeletedItems === item.isDeleted
+  //   );
+  //   setTodoItems(newItems);
+  // }, [showDeletedItems, isDeletedClick]);
+  // useEffect(() => {
+  //   setTodoItems(todoBaseData);
+  // }, [showAllItems]);
+  // useEffect(() => {
+  //   const activeTodos = todoBaseData.filter((item) => !item.isCompleted);
+  //   setTodoItems(activeTodos);
+  // }, [showActiveItems]);
+  // useEffect(() => {
+  //   const completedTodos = todoBaseData.filter((item) => item.isCompleted);
+  //   setTodoItems(completedTodos);
+  // }, [showCompletedItems]);
+  // useEffect(() => {
+  //   const activeTodos = todoBaseData.filter((item) => !item.isDeleted);
+  //   setTodoItems(activeTodos);
+  // }, []);
   return (
     <div className={styles.list}>
       <h1>To do list</h1>
@@ -59,12 +67,12 @@ const HomePage = () => {
           </div>
         </button>
       </div>
-      {todoItems.map((item) => (
+      {todosCollection.map((item) => (
         <TodoItemComponent
           key={item.id}
           todoItem={item}
-          deletedClick={setIsDeletedClick}
-          stateDeletedClick={isDeletedClick}
+          // deletedClick={setIsDeletedClick}
+          // stateDeletedClick={isDeletedClick}
         />
       ))}
     </div>

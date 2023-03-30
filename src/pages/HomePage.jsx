@@ -23,41 +23,39 @@ const Styled = {
     justify-content: end;
     width: 100%;
   `,
-  FilterButton: styled.div`
-    background-color: rgb(249, 206, 223);
-    color: rgb(135, 65, 93);
-    border-radius: 20px;
-    text-align: center;
-    margin: 10px;
-    padding: 8px 14px;
-    cursor: pointer;
-    border: none;
-  `,
   Filters: styled.div`
-    display: none;
+    display: block;
     width: max-content;
-    margin: 9px auto 9px;
+    padding: 3px;
+    margin: 9px 9px;
     background-color: rgb(249, 206, 223);
     border-radius: 5px;
-  `,
-  SortButton: styled.button`
-    background-color: rgb(140, 187, 241);
-    color: rgb(45, 93, 147);
-    border-radius: 20px;
-    text-align: center;
-    margin: 10px;
-    padding: 8px 14px;
-    cursor: pointer;
-    border: none;
-  `,
-  Sorts: styled.div`
-    display: none;
-    width: max-content;
-    margin: 4px auto 4px;
-    background-color: rgb(140, 187, 241);
-    border-radius: 5px;
+    div {
+      padding: 5px;
+    }
   `,
 };
+
+Styled.FilterButton = styled.div`
+  background-color: rgb(249, 206, 223);
+  color: rgb(135, 65, 93);
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  margin: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  border: none;
+  &:hover ~ ${Styled.Filters} {
+    display: block;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: absolute;
+    // right: 8%;
+    top: 17%;
+    z-index: 10;
+  }
+`;
 
 const HomePage = () => {
   const todosCollection = useSelector((state) => state.todos);
@@ -68,47 +66,32 @@ const HomePage = () => {
   }, []);
 
   const [showCompletedItems, setShowCompletedItems] = useState(false);
-  const [showDeletedItems, setShowDeletedItems] = useState(false);
   const [showActiveItems, setShowActiveItems] = useState(false);
   const [showAllItems, setShowAllItems] = useState(false);
+  const [todoItems, setTodoItems] = useState([]);
   // useEffect(() => {
   //   setTodoItems(todoBaseData);
   // }, [showAllItems]);
-  // useEffect(() => {
-  //   const activeTodos = todoBaseData.filter((item) => !item.isCompleted);
-  //   setTodoItems(activeTodos);
-  // }, [showActiveItems]);
-  // useEffect(() => {
-  //   const completedTodos = todoBaseData.filter((item) => item.isCompleted);
-  //   setTodoItems(completedTodos);
-  // }, [showCompletedItems]);
+  useEffect(() => {
+    const activeTodos = todosCollection.filter((item) => !item.isCompleted);
+    setTodoItems(activeTodos);
+  }, [showActiveItems]);
+  useEffect(() => {
+    const completedTodos = todosCollection.filter((item) => item.isCompleted);
+    setTodoItems(completedTodos);
+  }, [showCompletedItems]);
   return (
     <Styled.WrapperMain>
       <h1>To do list</h1>
       <Styled.WrapperButtons>
-        <Styled.FilterButton>
-          Filter
-          <Styled.Filters>
-            <div onClick={() => setShowAllItems(!showAllItems)}>All</div>
-            <div onClick={() => setShowActiveItems(!showActiveItems)}>
-              Active
-            </div>
-            <div onClick={() => setShowCompletedItems(!showCompletedItems)}>
-              Completed
-            </div>
-            <div onClick={() => setShowDeletedItems(!showDeletedItems)}>
-              Deleted
-            </div>
-          </Styled.Filters>
-        </Styled.FilterButton>
-        <Styled.SortButton>
-          Sort by
-          <Styled.Sorts>
-            <div>Created at</div>
-            <div>Completed at</div>
-            <div>Deleted at</div>
-          </Styled.Sorts>
-        </Styled.SortButton>
+        <Styled.FilterButton>Filter</Styled.FilterButton>
+        <Styled.Filters>
+          <div onClick={() => setShowAllItems(!showAllItems)}>All</div>
+          <div onClick={() => setShowActiveItems(!showActiveItems)}>Active</div>
+          <div onClick={() => setShowCompletedItems(!showCompletedItems)}>
+            Completed
+          </div>
+        </Styled.Filters>
       </Styled.WrapperButtons>
       {todosCollection.map((item) => (
         <Styled.WrapperTodos key={item.id}>

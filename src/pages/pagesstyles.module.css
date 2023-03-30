@@ -1,22 +1,8 @@
 .filterBtn:hover .filters {
-   display:flex;
-   flex-direction: column;
-   justify-content: flex-start;
-   position:absolute;
-   right: 7%;
-   z-index: 10;
 }
 .sorts div {
-   padding: 5px;
 }
 .sortBtn:hover .sorts {
-   display:flex;
-   flex-direction: column;
-   justify-content: flex-end;
-   position:absolute;
-   margin-top:10px;
-   right: 0%;
-   z-index: 10;
 }
 .wrapperForm >h1 {
    color: rgb(45, 93, 147);
@@ -26,14 +12,10 @@
 .wrapperBtn {
 }
 .defaultBtn {
-   font-family: "Gill Sans", sans-serif;
 }
 .submBtn {
-   background-color: rgba(58, 83, 111, 0.773);
-   margin-left: 10px;
 }
 .cancelBtn {
-   background-color: rgba(140, 187, 241, 0.218);
 }
 .inputText {
 }
@@ -52,4 +34,11 @@
 }
 .submBtn:disabled {
    opacity: 0.2;
+}
+
+
+
+
+.jopa{
+   color: #0c371e;
 }

@@ -7,7 +7,7 @@ const Styled = {
   AllSidebar: styled.div`
     height: 100vh;
     padding: 30px 40px;
-    background-color: rgba(140, 187, 241);
+    background-color: #80a6deb3;
   `,
   WrapperSidebar: styled.div`
     display: flex;
@@ -17,7 +17,6 @@ const Styled = {
   Menu: styled.div`
     list-style-type: none;
     text-decoration: none;
-    color: rgb(45, 93, 147);
     font-size: 25px;
     div {
       margin: 30px 0;
@@ -25,7 +24,7 @@ const Styled = {
   `,
   Link: styled(Link)`
     text-decoration: none;
-    color: rgb(45, 93, 147);
+    color: #243246;
     font-size: 30px;
   `,
 };

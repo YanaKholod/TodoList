@@ -13,7 +13,7 @@ const Styled = {
     margin: 0 auto;
   `,
   Errors: styled.div`
-    color: rgb(232, 78, 86);
+    color: #ae4141;
     font-size: 10px;
   `,
   RadioButtons: styled.div`
@@ -26,31 +26,32 @@ const Styled = {
     margin-top: 12px;
   `,
   InputText: styled.input`
-    background-color: rgb(253, 253, 255);
-    border-color: rgb(140, 187, 241);
+    background-color: #ffffff;
+    border-color: #5f7ca9;
     box-sizing: border-box;
     border-radius: 8px;
     width: 100%;
     padding: 6px 10px;
   `,
   InputDescription: styled.textarea`
-    background-color: rgb(253, 253, 255);
+    background-color: #ffffff;
     box-sizing: border-box;
-    border-color: rgb(140, 187, 241);
+    border-color: #5f7ca9;
     width: 100%;
     height: 200px;
     border-radius: 8px;
     padding: 6px 10px;
   `,
   DefaultButton: styled.button`
-    color: rgb(45, 93, 147);
+    color: #374a66;
     padding: 7px 25px;
     border-radius: 20px;
-    border-color: rgb(45, 93, 147);
-    background-color: rgba(140, 187, 241, 0.612);
+    border-color: #243246;
+    background-color: #80a6deb3;
     margin: 0 10px;
     &:hover {
-      background-color: rgba(58, 83, 111, 0.773);
+      background-color: #156837a1;
+      color: #0c371e;
     }
   `,
 };
@@ -73,10 +74,8 @@ export const Form = ({
       isCompleted: initialData ? initialData.isCompleted : false,
     },
   });
-  // console.log("initialData.isCompleted", initialData.isCompleted);
   const onSubmit = (data) => {
     onFormSubmit(data, initialData ? initialData.id : "");
-    console.log("INITDATA", initialData);
     setShowModal ? setShowModal(false) : reset();
   };
 

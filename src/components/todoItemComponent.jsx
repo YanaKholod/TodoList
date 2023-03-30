@@ -10,13 +10,10 @@ const Styled = {
   Wrapper: styled.div`
     display: flex;
     text-align: center;
-    width: 50%;
+    width: 70%;
     margin: 5px;
     border-radius: 10px;
-    ${({ isCompleted }) =>
-      isCompleted
-        ? "background-color: rgba(128, 218, 150, 0.304);opacity: 1;"
-        : ""}
+    ${({ isCompleted }) => (isCompleted ? "background-color: #84d5936a;" : "")}
   `,
   Title: styled.div`
     margin: 12px;
@@ -25,12 +22,13 @@ const Styled = {
   `,
   ButtonsWrapper: styled.div`
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    justify-content: end;
     position: relative;
   `,
   DoneButton: styled.div`
-    background-color: rgb(153, 226, 170);
-    color: rgb(79, 123, 90);
+    background-color: #84d593;
+    color: #375b3d;
     border-radius: 20px;
     text-align: center;
     margin: 10px;
@@ -39,8 +37,8 @@ const Styled = {
     ${({ isDone }) => (isDone ? "display: none;" : "")}
   `,
   DeleteButton: styled.div`
-    background-color: rgb(249, 206, 223);
-    color: rgb(135, 65, 93);
+    background-color: #f9cedf;
+    color: #663535;
     border-radius: 20px;
     text-align: center;
     margin: 10px;
@@ -48,8 +46,8 @@ const Styled = {
     cursor: pointer;
   `,
   EditButton: styled.div`
-    background-color: rgb(216, 222, 233);
-    color: rgb(73, 78, 87);
+    background-color: #cbcbcb;
+    color: #535252;
     border-radius: 20px;
     text-align: center;
     padding: 8px 23px;
@@ -58,12 +56,12 @@ const Styled = {
     ${({ stopEdit }) => (stopEdit ? "display: none;" : "")}
   `,
   Description: styled.div`
-    padding: 7px;
+    padding: 10px;
     border: 5px;
-    color: rgb(54, 56, 59);
     display: none;
-    width: 300px;
+    width: max-content;
     margin: 10px;
+    z-index: 5;
   `,
   Modal: styled.div`
     display: flex;
@@ -75,7 +73,7 @@ const Styled = {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(171, 171, 178, 0.624);
+    background-color: #51515175;
     backdrop-filter: blur(5px);
     z-index: 4;
   `,
@@ -88,8 +86,8 @@ const Styled = {
   `,
 };
 Styled.InfoButton = styled.div`
-  background-color: rgb(252, 237, 203);
-  color: rgb(109, 91, 48);
+  background-color: #fff9ab;
+  color: #656129;
   border-radius: 20px;
   text-align: center;
   margin: 10px;
@@ -99,9 +97,9 @@ Styled.InfoButton = styled.div`
     display: block;
     position: absolute;
     border-radius: 10px;
-    left: 80%;
-    top: 50;
-    background-color: rgba(171, 171, 178, 0.624);
+    left: 60%;
+    top: 60%;
+    background-color: #51515175;
   }
 `;
 
@@ -111,7 +109,6 @@ const TodoItemComponent = ({ todoItem }) => {
 
   const handleDone = async (data, id) => {
     await dispatch(editTodo({ data: { ...data, isCompleted: true }, id }));
-
     await dispatch(fetchTodos());
   };
 
@@ -121,7 +118,15 @@ const TodoItemComponent = ({ todoItem }) => {
   };
 
   const handleEdit = async (data, id) => {
-    await dispatch(editTodo({ data, id }));
+    await dispatch(
+      editTodo({
+        data: {
+          ...data,
+          isCompleted: data.isCompleted === "true" ? true : false,
+        },
+        id,
+      })
+    );
     await dispatch(fetchTodos());
   };
 

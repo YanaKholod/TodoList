@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Form from "../components/Form";
 import { useDispatch } from "react-redux";
 import { addTodo, fetchTodos } from "../store/slice";

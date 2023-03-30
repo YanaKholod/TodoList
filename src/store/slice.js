@@ -5,10 +5,13 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos", async () => {
     const response = await fetch(
       "https://642162bb86992901b2b2128d.mockapi.io/api/todos/"
     );
+
     if (!response.ok) {
       throw new Error("Oops, server error");
     }
+
     const data = await response.json();
+
     return data;
   } catch (error) {
     console.log(error.message);
@@ -68,10 +71,13 @@ export const editTodo = createAsyncThunk(
           body: JSON.stringify(data),
         }
       );
+
       if (!response.ok) {
         throw new Error("Can`t edit todo");
       }
+
       const updatedData = await response.json();
+
       return updatedData;
     } catch (error) {
       console.log(error.message);

@@ -1,25 +1,39 @@
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import HomePage from "./pages/HomePage";
 import CreateTodo from "./pages/CreateTodo";
 import Statics from "./pages/Statics";
-import "./App.css";
+import styled from "styled-components";
+
+const Styled = {
+  App: styled.div`
+    display: flex;
+    height: 100vh;
+  `,
+  SideBar: styled.div`
+    display: flex;
+    height: 100%;
+  `,
+  Content: styled.div`
+    display: flex;
+    width: 100%;
+  `,
+};
 function App() {
   return (
     <BrowserRouter>
-      <div className="app">
-        <div className="sidebar">
+      <Styled.App>
+        <Styled.SideBar>
           <Menu />
-        </div>
-        <div className="content">
+        </Styled.SideBar>
+        <Styled.Content>
           <Routes>
             <Route path="/" exact={true} element={<HomePage />} />
             <Route path="/create" element={<CreateTodo />} />
             <Route path="/statics" element={<Statics />} />
           </Routes>
-        </div>
-      </div>
+        </Styled.Content>
+      </Styled.App>
     </BrowserRouter>
   );
 }

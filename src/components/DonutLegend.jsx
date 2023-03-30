@@ -1,7 +1,15 @@
 import React from "react";
 import { LegendOrdinal, LegendItem, LegendLabel } from "@visx/legend";
 import { scaleOrdinal } from "@visx/scale";
-import styles from "./Styleall.module.css";
+import styled from "styled-components";
+
+const Styled = {
+  DonutInfo: styled.div`
+    display: flex;
+    justify-content: end;
+    align-items: end;
+  `,
+};
 const DonutLegend = ({ width, data }) => {
   const symbSize = 20;
   const completed = data.filter((item) => item.isCompleted).length;
@@ -17,7 +25,7 @@ const DonutLegend = ({ width, data }) => {
     range: ["rgb(232, 78, 86)", "rgb(45, 93, 147)", "rgb(153, 226, 170)"],
   });
   return (
-    <div className={styles.donutInfo}>
+    <Styled.DonutInfo>
       <LegendOrdinal scale={ordinalColorScale} width={width}>
         {(labels) => (
           <div style={{ display: "flex", flexDirection: "column" }}>
@@ -43,7 +51,7 @@ const DonutLegend = ({ width, data }) => {
           </div>
         )}
       </LegendOrdinal>
-    </div>
+    </Styled.DonutInfo>
   );
 };
 

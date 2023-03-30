@@ -11,119 +11,34 @@
    padding-top: 40px;
 }
 .menu >li>a {
-   text-decoration: none;
-   color: rgb(45, 93, 147);
-   font-size: 25px;
 }
-.wrapper {
-   display: flex;
-   flex-direction: row;
-   text-align: center;
-   margin: 5px;
-   font-family: "Gill Sans", sans-serif;
-   margin-right: 35%;
+ .wrapper {
    border-radius: 10px;
 }
 .title{
-   margin: 12px;
-   font-size: 23px;
-   cursor: default;
 }
 .buttonsWrapper {
-   display: flex;
-   flex-direction: row;
 }
 .doneBtn {
-   background-color: rgb(153, 226, 170);
-   color: rgb(79, 123, 90);
-   border-radius: 20px;
-   text-align: center;
-   margin: 10px;
-   padding: 8px 14px;
-   cursor: pointer;
 }
 .deleteBtn {
-   background-color: rgb(249,206,223);
-   color: rgb(135, 65, 93);
-   border-radius: 20px;
-   text-align: center;
-   margin: 10px;
-   padding: 8px 14px;
-   cursor: pointer;
 }
 .deleteBtn:disabled {
    cursor: not-allowed;
 }
 .infoBtn {
-   background-color: rgb(252,237,203);
-   color: rgb(109, 91, 48);
-   border-radius: 20px;
-   text-align: center;
-   margin: 10px;
-   padding: 8px 25px;
-   position:relative;
-   cursor: pointer;
 }
 .editBtn{
-   background-color: rgb(216,222,233);
-   color: rgb(73, 78, 87);
-   border-radius: 20px;
-   text-align: center;
-   padding: 8px 23px;
-   margin: 10px;
-   cursor: pointer;
 }
 .description {
-   padding: 7px;
-   border: 5px;
-   color:rgb(54, 56, 59);
-   display: none;
-   width:300px;
-   margin: 10px;
 }
 .infoBtn:hover .description {
-   display: block;
-   position: absolute;
-   border-radius: 10px;
-   left: 70%;
-   top:-100%;
-   z-index: 2;
 }
 .doneTask { 
-   background-color: rgba(128, 218, 150, 0.304);
-   opacity: 1;
 }
 .deletedTask {
-   background-color:  rgba(249, 206, 223, 0.637);
-   opacity: 1;
 }
 .btnNotAllowed {
-   display: none;
 }
 .modal {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   position: fixed;
-   top: 0;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   padding-right: 10%;
-   background-color: rgba(171, 171, 178, 0.624);
-   text-align: left;
-   padding-left: 15%;
-   backdrop-filter: blur(5px);
-   z-index: 4;
-}
-.donutInfo {
-   display:grid;
-   justify-content:center;
-   align-items: center;
-   padding-right: 30%;
-   font-family: "Gill Sans", sans-serif;
-}
-.wrapperStatics {
-   display:grid;
-   grid-template-columns: 400px 3fr;
 }

@@ -1,34 +1,36 @@
 import React, { useEffect } from "react";
 import Form from "../components/Form";
-import { todoBaseData } from "../mockData";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../store/slice";
+import { addTodo, fetchTodos } from "../store/slice";
+import styled from "styled-components";
 
+const Styled = {
+  WrapperForm: styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+  `,
+};
 const CreateTodo = () => {
   const dispatch = useDispatch();
 
-  const addNewTodo = (data) => {
-    dispatch(addTodo(data));
+  const addNewTodo = async (data) => {
+    await dispatch(
+      addTodo({
+        ...data,
+        isCompleted: data.isCompleted === "true" ? true : false,
+        // completedAt:'',
+        // createdAt:'',
+      })
+    );
+    await dispatch(fetchTodos());
   };
-  // const createToDo = (data, id) => {
-  //   const addFormData = () => {
-  //     todoBaseData.push({
-  //       id: id,
-  //       title: data.title,
-  //       description: data.description,
-  //       isCompleted: data.isCompleted === "true" ? true : false,
-  //       createdAt: new Date(),
-  //       completedAt: null,
-  //       isDeleted: false,
-  //       deletedAt: null,
-  //     });
-  //   };
-  //   addFormData(data);
-  // };
+
   return (
-    <div>
+    <Styled.WrapperForm>
       <Form onFormSubmit={addNewTodo} buttonName={"Add"} />
-    </div>
+    </Styled.WrapperForm>
   );
 };
 

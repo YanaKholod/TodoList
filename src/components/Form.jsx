@@ -1,7 +1,59 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import styles from "../pages/pagesstyles.module.css";
+import styled from "styled-components";
 
+const Styled = {
+  WrapperForm: styled.div`
+    h1 {
+      text-align: center;
+    }
+  `,
+  Form: styled.form`
+    width: 70%;
+    margin: 0 auto;
+  `,
+  Errors: styled.div`
+    color: rgb(232, 78, 86);
+    font-size: 10px;
+  `,
+  RadioButtons: styled.div`
+    display: flex;
+    justify-content: flex-start;
+  `,
+  WrapperButtons: styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+  `,
+  InputText: styled.input`
+    background-color: rgb(253, 253, 255);
+    border-color: rgb(140, 187, 241);
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 100%;
+    padding: 6px 10px;
+  `,
+  InputDescription: styled.textarea`
+    background-color: rgb(253, 253, 255);
+    box-sizing: border-box;
+    border-color: rgb(140, 187, 241);
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    padding: 6px 10px;
+  `,
+  DefaultButton: styled.button`
+    color: rgb(45, 93, 147);
+    padding: 7px 25px;
+    border-radius: 20px;
+    border-color: rgb(45, 93, 147);
+    background-color: rgba(140, 187, 241, 0.612);
+    margin: 0 10px;
+    &:hover {
+      background-color: rgba(58, 83, 111, 0.773);
+    }
+  `,
+};
 export const Form = ({
   setShowModal = null,
   onFormSubmit,
@@ -21,20 +73,24 @@ export const Form = ({
       isCompleted: initialData ? initialData.isCompleted : false,
     },
   });
+  // console.log("initialData.isCompleted", initialData.isCompleted);
   const onSubmit = (data) => {
-    onFormSubmit(data, initialData ? initialData.id : Math.random());
-    reset();
+    onFormSubmit(data, initialData ? initialData.id : "");
+    console.log("INITDATA", initialData);
+    setShowModal ? setShowModal(false) : reset();
   };
+
   const onCancelClick = () => {
     setShowModal ? setShowModal(false) : reset();
   };
+
   return (
-    <div className={styles.wrapperForm}>
+    <Styled.WrapperForm>
       <h1>Type in your task</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <Styled.Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <p>Title:</p>
-          <input
+          <Styled.InputText
             {...register("title", {
               required: "Required field!",
               minLength: {
@@ -43,30 +99,28 @@ export const Form = ({
               },
             })}
             style={{ border: errors.title ? "2px solid red" : "" }}
-            className={styles.inputText}
-          ></input>
+          ></Styled.InputText>
         </label>
-        <div className={styles.error}>
+        <Styled.Errors>
           {errors?.title && <p>{errors?.title?.message}</p>}
-        </div>
+        </Styled.Errors>
         <label>
           <p> Description:</p>
-          <textarea
+          <Styled.InputDescription
             {...register("description", {
               required: "Required field!",
               minLength: {
-                value: 10,
-                message: "Must be more than 10 symbols",
+                value: 5,
+                message: "Must be more symbols",
               },
             })}
             style={{ border: errors.description ? "2px solid red" : "" }}
-            className={styles.inputTextDescr}
-          ></textarea>
+          ></Styled.InputDescription>
         </label>
-        <div className={styles.error}>
+        <Styled.Errors>
           {errors?.description && <p>{errors?.description?.message}</p>}
-        </div>
-        <div className={styles.radioBtns}>
+        </Styled.Errors>
+        <Styled.RadioButtons>
           <label>In progress</label>
           <input
             value={false}
@@ -80,25 +134,25 @@ export const Form = ({
             type="radio"
             {...register("isCompleted", { required: true })}
           ></input>
-        </div>
-        <div className={styles.wrapperBtn}>
-          <button
-            className={[styles.defaultBtn, styles.cancelBtn].join(" ")}
+        </Styled.RadioButtons>
+        <Styled.WrapperButtons>
+          <Styled.DefaultButton
+            // className={[styles.defaultBtn, styles.cancelBtn].join(" ")}
             type="reset"
             onClick={() => onCancelClick()}
           >
             Cancel
-          </button>
-          <button
-            className={[styles.defaultBtn, styles.submBtn].join(" ")}
+          </Styled.DefaultButton>
+          <Styled.DefaultButton
+            // className={[styles.defaultBtn, styles.submBtn].join(" ")}
             type="submit"
             disabled={!isValid}
           >
             {buttonName}
-          </button>
-        </div>
-      </form>
-    </div>
+          </Styled.DefaultButton>
+        </Styled.WrapperButtons>
+      </Styled.Form>
+    </Styled.WrapperForm>
   );
 };
 

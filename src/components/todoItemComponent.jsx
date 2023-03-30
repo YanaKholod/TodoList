@@ -1,84 +1,174 @@
 import React from "react";
-import { todoBaseData } from "../mockData";
 import styles from "./Styleall.module.css";
 import Form from "../components/Form";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteTodo, editTodo } from "../store/slice";
+import { deleteTodo, editTodo, fetchTodos } from "../store/slice";
+import styled from "styled-components";
 
-const TodoItemComponent = ({ todoItem, deletedClick, stateDeletedClick }) => {
+const Styled = {
+  Wrapper: styled.div`
+    display: flex;
+    text-align: center;
+    width: 50%;
+    margin: 5px;
+    border-radius: 10px;
+    ${({ isCompleted }) =>
+      isCompleted
+        ? "background-color: rgba(128, 218, 150, 0.304);opacity: 1;"
+        : ""}
+  `,
+  Title: styled.div`
+    margin: 12px;
+    font-size: 23px;
+    cursor: default;
+  `,
+  ButtonsWrapper: styled.div`
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  `,
+  DoneButton: styled.div`
+    background-color: rgb(153, 226, 170);
+    color: rgb(79, 123, 90);
+    border-radius: 20px;
+    text-align: center;
+    margin: 10px;
+    padding: 8px 14px;
+    cursor: pointer;
+    ${({ isDone }) => (isDone ? "display: none;" : "")}
+  `,
+  DeleteButton: styled.div`
+    background-color: rgb(249, 206, 223);
+    color: rgb(135, 65, 93);
+    border-radius: 20px;
+    text-align: center;
+    margin: 10px;
+    padding: 8px 14px;
+    cursor: pointer;
+  `,
+  EditButton: styled.div`
+    background-color: rgb(216, 222, 233);
+    color: rgb(73, 78, 87);
+    border-radius: 20px;
+    text-align: center;
+    padding: 8px 23px;
+    margin: 10px;
+    cursor: pointer;
+    ${({ stopEdit }) => (stopEdit ? "display: none;" : "")}
+  `,
+  Description: styled.div`
+    padding: 7px;
+    border: 5px;
+    color: rgb(54, 56, 59);
+    display: none;
+    width: 300px;
+    margin: 10px;
+  `,
+  Modal: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(171, 171, 178, 0.624);
+    backdrop-filter: blur(5px);
+    z-index: 4;
+  `,
+  ModalForm: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 100%;
+  `,
+};
+Styled.InfoButton = styled.div`
+  background-color: rgb(252, 237, 203);
+  color: rgb(109, 91, 48);
+  border-radius: 20px;
+  text-align: center;
+  margin: 10px;
+  padding: 8px 25px;
+  cursor: pointer;
+  &:hover ~ ${Styled.Description} {
+    display: block;
+    position: absolute;
+    border-radius: 10px;
+    left: 80%;
+    top: 50;
+    background-color: rgba(171, 171, 178, 0.624);
+  }
+`;
+
+const TodoItemComponent = ({ todoItem }) => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
 
-  const handleDone = (data, id) => {
-    dispatch(editTodo({ data: { isCompleted: true }, id }));
+  const handleDone = async (data, id) => {
+    await dispatch(editTodo({ data: { ...data, isCompleted: true }, id }));
 
-    // const currentIndex = todoBaseData.findIndex((item) => item.id === itemId);
-    // todoBaseData[currentIndex] = {
-    //   ...todoBaseData[currentIndex],
-    //   isCompleted: true,
-    //   completedAt: new Date(),
-    // };
-    // deletedClick(!stateDeletedClick);
+    await dispatch(fetchTodos());
   };
-  const handleDelete = (id) => {
-    dispatch(deleteTodo(id));
+
+  const handleDelete = async (id) => {
+    await dispatch(deleteTodo(id));
+    await dispatch(fetchTodos());
   };
-  const handleEdit = (data, id) => {
-    dispatch(editTodo({ data, id }));
+
+  const handleEdit = async (data, id) => {
+    await dispatch(editTodo({ data, id }));
+    await dispatch(fetchTodos());
   };
+
   return (
-    <div
-      className={`${styles.wrapper} ${
-        todoItem.isCompleted ? styles.doneTask : ""
-      } ${todoItem.isDeleted ? styles.deletedTask : ""}`}
-    >
-      <div className={styles.title}>{todoItem.title}</div>
-      <div className={styles.buttonsWrapper}>
-        <div
-          className={`${styles.doneBtn} ${
-            todoItem.isCompleted ? styles.btnNotAllowed : ""
-          }`}
-          // onClick={() => {
-          //   !todoItem.isCompleted && handleDone(todoItem.id);
-          // }}
+    <Styled.Wrapper isCompleted={todoItem.isCompleted}>
+      <Styled.Title>{todoItem.title}</Styled.Title>
+      <Styled.ButtonsWrapper>
+        <Styled.DoneButton
+          isDone={todoItem.isCompleted}
+          onClick={() => {
+            handleDone(todoItem, todoItem.id);
+          }}
         >
           Done
-        </div>
-        <div
-          className={`${styles.deleteBtn} ${
-            todoItem.isDeleted ? styles.btnNotAllowed : ""
-          }`}
+        </Styled.DoneButton>
+        <Styled.DeleteButton
           onClick={() => {
             handleDelete(todoItem.id);
-            console.log("todoItem.id", todoItem.id);
           }}
         >
           Delete
-        </div>
-        <div
-          className={`${styles.editBtn} ${
-            todoItem.isCompleted ? styles.btnNotAllowed : ""
-          }`}
+        </Styled.DeleteButton>
+        <Styled.EditButton
+          stopEdit={todoItem.isCompleted}
           onClick={() => setShowModal(true)}
         >
           Edit
-        </div>
+        </Styled.EditButton>
         {showModal && (
-          <div className={styles.modal}>
-            <Form
-              setShowModal={setShowModal}
-              initialData={todoItem}
-              buttonName={"Save"}
-              onFormSubmit={handleEdit}
-            />
-          </div>
+          <Styled.Modal>
+            <Styled.ModalForm
+            // onClick={() => {
+            //   setShowModal(false);
+            // }}
+            >
+              <Form
+                setShowModal={setShowModal}
+                initialData={todoItem}
+                buttonName={"Save"}
+                onFormSubmit={handleEdit}
+              />
+            </Styled.ModalForm>
+          </Styled.Modal>
         )}
-        <div className={styles.infoBtn}>
+        <Styled.InfoButton>
           Info
-          <div className={styles.description}>
-            <div>{todoItem.description}</div>
-            {/* <div>
+          {/* <div>
               {!todoItem.isCompleted &&
                 !todoItem.isDeleted &&
                 `Created at : ${todoItem.createdAt.toLocaleDateString(
@@ -103,10 +193,12 @@ const TodoItemComponent = ({ todoItem, deletedClick, stateDeletedClick }) => {
                   "en-US"
                 )} `}
             </div> */}
-          </div>
-        </div>
-      </div>
-    </div>
+        </Styled.InfoButton>
+        <Styled.Description>
+          <div>{todoItem.description}</div>
+        </Styled.Description>
+      </Styled.ButtonsWrapper>
+    </Styled.Wrapper>
   );
 };
 

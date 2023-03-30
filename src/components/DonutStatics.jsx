@@ -3,7 +3,14 @@ import { Pie } from "@visx/shape";
 import { Group } from "@visx/group";
 import { todoBaseData } from "../mockData";
 import DonutLegend from "./DonutLegend";
-import styles from "./Styleall.module.css";
+import styled from "styled-components";
+
+const Styled = {
+  StaticWrapper: styled.div`
+    display: flex;
+    justify-content: center;
+  `,
+};
 
 const dataUser = [
   {
@@ -31,12 +38,14 @@ const dataUser = [
     domain: "Completed",
   },
 ];
+
 const DonutStatics = () => {
   const width = 400;
   const height = 500;
   const half = width / 2;
+
   return (
-    <div className={styles.wrapperStatics}>
+    <Styled.StaticWrapper>
       <svg width={width} height={height}>
         <Group left={half} top={half}>
           <Pie
@@ -59,7 +68,7 @@ const DonutStatics = () => {
         </Group>
       </svg>
       <DonutLegend width={200} data={todoBaseData} />
-    </div>
+    </Styled.StaticWrapper>
   );
 };
 

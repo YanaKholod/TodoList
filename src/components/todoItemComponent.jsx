@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Styleall.module.css";
 import Form from "../components/Form";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -14,46 +13,89 @@ const Styled = {
     margin: 5px;
     border-radius: 10px;
     ${({ isCompleted }) => (isCompleted ? "background-color: #84d5936a;" : "")}
+    @media (max-width: 620px) {
+      width: 90%;
+    }
+    @media (max-width: 500px) {
+      flex-direction: column;
+    }
   `,
   Title: styled.div`
     margin: 12px;
     font-size: 23px;
     cursor: default;
+    width: 100%;
+    text-align: start;
+    @media (max-width: 768px) {
+      font-size: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+    @media (max-width: 500px) {
+      display: flex;
+      justify-content: center;
+    }
   `,
   ButtonsWrapper: styled.div`
     display: flex;
     width: 100%;
     justify-content: end;
     position: relative;
+    @media (max-width: 768px) {
+      font-size: 13px;
+    }
+    @media (max-width: 500px) {
+      justify-content: center;
+    }
   `,
   DoneButton: styled.div`
     background-color: #84d593;
     color: #375b3d;
+    border: 1px solid #375b3d;
+    height: max-content;
     border-radius: 20px;
     text-align: center;
-    margin: 10px;
+    margin: 10px 6px;
     padding: 8px 14px;
     cursor: pointer;
     ${({ isDone }) => (isDone ? "display: none;" : "")}
+    @media (max-width: 620px) {
+      margin: 10px 2px;
+      padding: 8px 13px;
+    }
   `,
   DeleteButton: styled.div`
     background-color: #f9cedf;
     color: #663535;
+    border: 1px solid #663535;
     border-radius: 20px;
     text-align: center;
-    margin: 10px;
+    margin: 10px 6px;
+    height: max-content;
     padding: 8px 14px;
     cursor: pointer;
+    @media (max-width: 620px) {
+      margin: 10px 2px;
+      padding: 8px 13px;
+    }
   `,
   EditButton: styled.div`
     background-color: #cbcbcb;
     color: #535252;
+    border: 1px solid #535252;
     border-radius: 20px;
     text-align: center;
     padding: 8px 23px;
-    margin: 10px;
+    margin: 10px 6px;
+    height: max-content;
     cursor: pointer;
     ${({ stopEdit }) => (stopEdit ? "display: none;" : "")}
+    @media (max-width: 620px) {
+      margin: 10px 2px;
+      padding: 8px 13px;
+    }
   `,
   Description: styled.div`
     padding: 10px;
@@ -74,7 +116,7 @@ const Styled = {
     left: 0;
     right: 0;
     background-color: #51515175;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(14px);
     z-index: 4;
   `,
   ModalForm: styled.div`
@@ -88,11 +130,17 @@ const Styled = {
 Styled.InfoButton = styled.div`
   background-color: #fff9ab;
   color: #656129;
+  border: 1px solid #656129;
   border-radius: 20px;
   text-align: center;
-  margin: 10px;
+  margin: 10px 6px;
+  height: max-content;
   padding: 8px 25px;
   cursor: pointer;
+  @media (max-width: 620px) {
+    margin: 10px 2px;
+    padding: 8px 13px;
+  }
   &:hover ~ ${Styled.Description} {
     display: block;
     position: absolute;
@@ -157,11 +205,7 @@ const TodoItemComponent = ({ todoItem }) => {
         </Styled.EditButton>
         {showModal && (
           <Styled.Modal>
-            <Styled.ModalForm
-            // onClick={() => {
-            //   setShowModal(false);
-            // }}
-            >
+            <Styled.ModalForm>
               <Form
                 setShowModal={setShowModal}
                 initialData={todoItem}

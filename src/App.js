@@ -9,14 +9,23 @@ const Styled = {
   App: styled.div`
     display: flex;
     height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
   `,
   SideBar: styled.div`
     display: flex;
-    height: 100%;
+    justify-content: center;
+    width: 100%;
   `,
   Content: styled.div`
     display: flex;
     width: 100%;
+    height: 100%;
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 23px;
+      }
+    }
   `,
 };
 function App() {

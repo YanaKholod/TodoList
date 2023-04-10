@@ -4,12 +4,16 @@ import styled from "styled-components";
 
 const Styled = {
   WrapperForm: styled.div`
-    h1 {
-      text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    @media (max-width: 620px) {
+      width: 250px;
     }
   `,
   Form: styled.form`
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
   `,
   Errors: styled.div`
@@ -64,7 +68,7 @@ export const Form = ({
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     reset,
   } = useForm({
     mode: "onBlur",
@@ -85,7 +89,6 @@ export const Form = ({
 
   return (
     <Styled.WrapperForm>
-      <h1>Type in your task</h1>
       <Styled.Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <p>Title:</p>
@@ -145,7 +148,7 @@ export const Form = ({
           <Styled.DefaultButton
             // className={[styles.defaultBtn, styles.submBtn].join(" ")}
             type="submit"
-            disabled={!isValid}
+            // disabled={!isValid}
           >
             {buttonName}
           </Styled.DefaultButton>

@@ -10,6 +10,9 @@ const Styled = {
     width: 100%;
     h1 {
       text-align: center;
+      color: rgb(36, 50, 70);
+      font-size: 30px;
+      margin: 12px 0;
     }
   `,
 };

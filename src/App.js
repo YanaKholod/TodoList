@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Menu from "./components/Menu";
 import HomePage from "./pages/HomePage";
 import CreateTodo from "./pages/CreateTodo";
-import Statics from "./pages/Statics";
+import Statistics from "./pages/Statistics";
 import styled from "styled-components";
 
 const Styled = {
@@ -39,7 +39,7 @@ function App() {
           <Routes>
             <Route path="/" exact={true} element={<HomePage />} />
             <Route path="/create" element={<CreateTodo />} />
-            <Route path="/statics" element={<Statics />} />
+            <Route path="/statistics" element={<Statistics />} />
           </Routes>
         </Styled.Content>
       </Styled.App>

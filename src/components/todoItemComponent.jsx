@@ -8,30 +8,32 @@ import styled from "styled-components";
 const Styled = {
   Wrapper: styled.div`
     display: flex;
-    text-align: center;
-    width: 70%;
+    align-items: center;
+    width: 80%;
     margin: 5px;
+    padding: 12px;
     border-radius: 10px;
     ${({ isCompleted }) => (isCompleted ? "background-color: #84d5936a;" : "")}
     @media (max-width: 620px) {
-      width: 90%;
+      padding: 7px 10px;
+      justify-content: space-around;
     }
     @media (max-width: 500px) {
       flex-direction: column;
+      justify-content: space-around;
     }
   `,
   Title: styled.div`
-    margin: 12px;
     font-size: 23px;
     cursor: default;
     width: 100%;
+    padding-right: 7px;
     text-align: start;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @media (max-width: 768px) {
       font-size: 17px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
     }
     @media (max-width: 500px) {
       display: flex;
@@ -43,6 +45,7 @@ const Styled = {
     width: 100%;
     justify-content: end;
     position: relative;
+    align-items: center;
     @media (max-width: 768px) {
       font-size: 13px;
     }
@@ -57,13 +60,12 @@ const Styled = {
     height: max-content;
     border-radius: 20px;
     text-align: center;
-    margin: 10px 6px;
     padding: 8px 14px;
     cursor: pointer;
     ${({ isDone }) => (isDone ? "display: none;" : "")}
     @media (max-width: 620px) {
-      margin: 10px 2px;
-      padding: 8px 13px;
+      margin: 5px 2px;
+      padding: 6px 8px;
     }
   `,
   DeleteButton: styled.div`
@@ -72,13 +74,12 @@ const Styled = {
     border: 1px solid #663535;
     border-radius: 20px;
     text-align: center;
-    margin: 10px 6px;
     height: max-content;
     padding: 8px 14px;
     cursor: pointer;
     @media (max-width: 620px) {
-      margin: 10px 2px;
-      padding: 8px 13px;
+      margin: 5px 2px;
+      padding: 6px 8px;
     }
   `,
   EditButton: styled.div`
@@ -88,13 +89,12 @@ const Styled = {
     border-radius: 20px;
     text-align: center;
     padding: 8px 23px;
-    margin: 10px 6px;
     height: max-content;
     cursor: pointer;
     ${({ stopEdit }) => (stopEdit ? "display: none;" : "")}
     @media (max-width: 620px) {
-      margin: 10px 2px;
-      padding: 8px 13px;
+      margin: 5px 2px;
+      padding: 6px 8px;
     }
   `,
   Description: styled.div`
@@ -133,20 +133,20 @@ Styled.InfoButton = styled.div`
   border: 1px solid #656129;
   border-radius: 20px;
   text-align: center;
-  margin: 10px 6px;
   height: max-content;
   padding: 8px 25px;
   cursor: pointer;
   @media (max-width: 620px) {
-    margin: 10px 2px;
-    padding: 8px 13px;
+    margin: 5px 2px;
+    padding: 6px 8px;
   }
   &:hover ~ ${Styled.Description} {
     display: block;
     position: absolute;
     border-radius: 10px;
-    left: 60%;
-    top: 60%;
+    padding: 5px;
+    left: 80%;
+    top: 65%;
     background-color: #51515175;
   }
 `;

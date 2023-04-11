@@ -11,7 +11,7 @@ export const Sidebar = [
   },
   {
     id: 3,
-    title: "Statics",
-    link: "/statics",
+    title: "Statistics",
+    link: "/statistics",
   },
 ];

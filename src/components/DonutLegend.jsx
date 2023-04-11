@@ -1,34 +1,21 @@
 import React from "react";
 import { LegendOrdinal, LegendItem, LegendLabel } from "@visx/legend";
 import { scaleOrdinal } from "@visx/scale";
-import styled from "styled-components";
 
-const Styled = {
-  DonutInfo: styled.div`
-    display: flex;
-    justify-content: end;
-    align-items: end;
-  `,
-};
-const DonutLegend = ({ width, data }) => {
+const DonutLegend = ({ data }) => {
   const symbSize = 20;
   const completed = data.filter((item) => item.isCompleted).length;
-  const deleted = data.filter((item) => item.isDeleted).length;
   const active = data.filter((item) => !item.isCompleted).length;
 
   const ordinalColorScale = scaleOrdinal({
-    domain: [
-      `Deleted ${deleted}`,
-      `Active ${active}`,
-      `Completed ${completed}`,
-    ],
-    range: ["rgb(232, 78, 86)", "rgb(45, 93, 147)", "rgb(153, 226, 170)"],
+    domain: [`Active ${active}`, `Completed ${completed}`],
+    range: ["rgb(45, 93, 147)", "rgb(153, 226, 170)"],
   });
   return (
-    <Styled.DonutInfo>
-      <LegendOrdinal scale={ordinalColorScale} width={width}>
+    <div>
+      <LegendOrdinal scale={ordinalColorScale}>
         {(labels) => (
-          <div style={{ display: "flex", flexDirection: "column" }}>
+          <div>
             {labels.map((label, i) => (
               <LegendItem key={`legend-quantile-${i}`} margin="5px 0">
                 <svg width={symbSize} height={symbSize}>
@@ -51,7 +38,7 @@ const DonutLegend = ({ width, data }) => {
           </div>
         )}
       </LegendOrdinal>
-    </Styled.DonutInfo>
+    </div>
   );
 };
 

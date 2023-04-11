@@ -9,6 +9,7 @@ const Styled = {
     display: flex;
     justify-content: center;
     width: 100%;
+    overflow: scroll;
   `,
   WrapperMain: styled.div`
     display: flex;
@@ -21,10 +22,17 @@ const Styled = {
       margin: 12px 0;
     }
   `,
-  WrapperButtons: styled.div`
+  WrapperTodos: styled.div`
     display: flex;
-    justify-content: end;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
+  `,
+  WrapperFilterButtons: styled.div`
+    display: flex;
+    justify-content: start;
+    width: 83%;
+    margin-bottom: 5px;
     @media (max-width: 768px) {
       font-size: 13px;
     }
@@ -32,14 +40,11 @@ const Styled = {
   Filters: styled.div`
     display: flex;
     width: max-content;
-    justify-content: flex-start;
-    padding: 3px;
-    margin: 9px 9px;
-    border-radius: 5px;
+    justify-content: start;
     cursor: pointer;
     div {
       margin: 0 3px;
-      padding: 7px;
+      padding: 5px;
       border: 1px solid #663535;
       border-radius: 10px;
       background-color: #f9cedf;
@@ -47,27 +52,6 @@ const Styled = {
     }
   `,
 };
-
-// Styled.Filter = styled.div`
-//   background-color: rgb(249, 206, 223);
-//   color: rgb(135, 65, 93);
-//   border-radius: 20px;
-//   text-align: center;
-//   position: relative;
-//   margin: 10px;
-//   padding: 8px 14px;
-//   cursor: pointer;
-//   border: none;
-//   // &:hover ~ ${Styled.Filters} {
-//   //   display: block;
-//   //   flex-direction: column;
-//   //   justify-content: flex-start;
-//   //   position: absolute;
-//   //   // right: 8%;
-//   //   top: 17%;
-//   //   z-index: 10;
-//   // }
-// `;
 
 const HomePage = () => {
   const todosCollection = useSelector((state) => state.todos);
@@ -103,26 +87,30 @@ const HomePage = () => {
   return (
     <Styled.WrapperMain>
       <h1>To do list</h1>
-      <Styled.WrapperButtons>
-        {/* <Styled.Filter>Filter</Styled.Filter> */}
-        <Styled.Filters>
-          <div onClick={() => setShowAllItems(!showAllItems)}>All</div>
-          <div onClick={() => setShowActiveItems(!showActiveItems)}>Active</div>
-          <div onClick={() => setShowCompletedItems(!showCompletedItems)}>
-            Completed
-          </div>
-        </Styled.Filters>
-      </Styled.WrapperButtons>
-      {todosForShow &&
-        todosForShow.map((item) => (
-          <Styled.WrapperTodos key={item.id}>
+      <Styled.WrapperTodos>
+        <Styled.WrapperFilterButtons>
+          <Styled.Filters>
+            <div onClick={() => setShowAllItems(!showAllItems)}>All</div>
+            <div onClick={() => setShowActiveItems(!showActiveItems)}>
+              Active
+            </div>
+            <div onClick={() => setShowCompletedItems(!showCompletedItems)}>
+              Completed
+            </div>
+          </Styled.Filters>
+        </Styled.WrapperFilterButtons>
+        {todosForShow &&
+          todosForShow.map((item) => (
+            // <Styled.WrapperTodos key={item.id}>
             <TodoItemComponent
+              key={item.id}
               todoItem={item}
               // deletedClick={setIsDeletedClick}
               // stateDeletedClick={isDeletedClick}
             />
-          </Styled.WrapperTodos>
-        ))}
+            // </Styled.WrapperTodos>
+          ))}
+      </Styled.WrapperTodos>
     </Styled.WrapperMain>
   );
 };

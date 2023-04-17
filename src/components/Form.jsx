@@ -8,6 +8,10 @@ const Styled = {
     justify-content: center;
     align-items: center;
     width: 400px;
+    font-size: 20px;
+    p {
+      color: rgb(36, 50, 70);
+    }
     @media (max-width: 620px) {
       width: 250px;
     }
@@ -36,6 +40,7 @@ const Styled = {
     border-radius: 8px;
     width: 100%;
     padding: 6px 10px;
+    font-size: 17px;
   `,
   InputDescription: styled.textarea`
     background-color: #ffffff;
@@ -45,6 +50,7 @@ const Styled = {
     height: 200px;
     border-radius: 8px;
     padding: 6px 10px;
+    font-size: 17px;
   `,
   DefaultButton: styled.button`
     color: #374a66;
@@ -78,6 +84,7 @@ export const Form = ({
       isCompleted: initialData ? initialData.isCompleted : false,
     },
   });
+
   const onSubmit = (data) => {
     onFormSubmit(data, initialData ? initialData.id : "");
     setShowModal ? setShowModal(false) : reset();
@@ -138,18 +145,10 @@ export const Form = ({
           ></input>
         </Styled.RadioButtons>
         <Styled.WrapperButtons>
-          <Styled.DefaultButton
-            // className={[styles.defaultBtn, styles.cancelBtn].join(" ")}
-            type="reset"
-            onClick={() => onCancelClick()}
-          >
+          <Styled.DefaultButton type="reset" onClick={() => onCancelClick()}>
             Cancel
           </Styled.DefaultButton>
-          <Styled.DefaultButton
-            // className={[styles.defaultBtn, styles.submBtn].join(" ")}
-            type="submit"
-            // disabled={!isValid}
-          >
+          <Styled.DefaultButton type="submit">
             {buttonName}
           </Styled.DefaultButton>
         </Styled.WrapperButtons>

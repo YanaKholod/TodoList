@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Menu from "./components/Menu";
 import HomePage from "./pages/HomePage";
 import CreateTodo from "./pages/CreateTodo";
@@ -37,9 +37,10 @@ function App() {
         </Styled.SideBar>
         <Styled.Content>
           <Routes>
-            <Route path="/" exact={true} element={<HomePage />} />
+            <Route path="/main" exact={true} element={<HomePage />} />
             <Route path="/create" element={<CreateTodo />} />
             <Route path="/statistics" element={<Statistics />} />
+            <Route path="*" element={<Navigate to="/main" />} />
           </Routes>
         </Styled.Content>
       </Styled.App>

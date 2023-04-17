@@ -35,10 +35,11 @@ const CreateTodo = () => {
       addTodo({
         ...data,
         isCompleted: data.isCompleted === "true" ? true : false,
-        // completedAt:'',
-        // createdAt: '',
+        completedAt: data.isCompleted === "true" ? Date.now() : "",
+        createdAt: Date.now(),
       })
     );
+
     await dispatch(fetchTodos());
   };
 

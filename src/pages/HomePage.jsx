@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TodoItemComponent from "../components/todoItemComponent";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTodos } from "../store/slice";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Styled = {
@@ -31,7 +32,7 @@ const Styled = {
   WrapperFilterButtons: styled.div`
     display: flex;
     justify-content: start;
-    width: 83%;
+    width: 82%;
     margin-bottom: 5px;
     @media (max-width: 768px) {
       font-size: 13px;
@@ -54,6 +55,7 @@ const Styled = {
 };
 
 const HomePage = () => {
+  const history = useNavigate();
   const todosCollection = useSelector((state) => state.todos);
   const dispatch = useDispatch();
 
@@ -101,14 +103,7 @@ const HomePage = () => {
         </Styled.WrapperFilterButtons>
         {todosForShow &&
           todosForShow.map((item) => (
-            // <Styled.WrapperTodos key={item.id}>
-            <TodoItemComponent
-              key={item.id}
-              todoItem={item}
-              // deletedClick={setIsDeletedClick}
-              // stateDeletedClick={isDeletedClick}
-            />
-            // </Styled.WrapperTodos>
+            <TodoItemComponent key={item.id} todoItem={item} />
           ))}
       </Styled.WrapperTodos>
     </Styled.WrapperMain>
